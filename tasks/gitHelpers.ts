@@ -7,9 +7,8 @@ import { spawnSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Octokit } from '@octokit/rest';
-import { NugetPackageInfo } from './offlinePackagingTasks';
+import { NugetPackageInfo, platformSpecificPackages } from './offlinePackagingTasks';
 import { PlatformInformation } from '../src/shared/platform';
-import { platformSpecificPackages } from './offlinePackagingTasks';
 
 export interface GitOptions {
     commitSha: string;
@@ -118,7 +117,7 @@ export async function createBranchAndPR(
     title: string,
     commitMessage: string,
     body?: string
-): Promise<void> {
+): Promise<number | null> {
     const { githubPAT, targetRemoteRepo, baseBranch, dryRun, userName, email, newBranchName } = options;
     const remoteRepoAlias = 'target';
 
@@ -143,7 +142,7 @@ export async function createBranchAndPR(
             'remote',
             'add',
             remoteRepoAlias,
-            `https://${options.userName}:${githubPAT}@github.com/dotnet/${targetRemoteRepo}.git`,
+            `https://github.com/deepakrathore33/vscode-csharp.git`,
         ],
         false // Don't print command with PAT
     );
@@ -154,10 +153,10 @@ export async function createBranchAndPR(
     const lsRemote = await git(['ls-remote', remoteRepoAlias, 'refs/heads/' + newBranchName]);
     if (lsRemote.trim() !== '') {
         console.log(`##vso[task.logissue type=error]${newBranchName} already exists in ${targetRemoteRepo}. Skip pushing.`);
-        return;
+        return null;
     }
 
-    if (!dryRun) {
+    if (dryRun !== true) {
         // Push the newly created branch to the target remote
         await git(['push', '-u', remoteRepoAlias, newBranchName]);
     } else {
@@ -168,8 +167,8 @@ export async function createBranchAndPR(
 
     // Check for existing PRs with same title
     const listPullRequest = await octokit.rest.pulls.list({
-        owner: 'dotnet',
-        repo: targetRemoteRepo,
+        owner: 'deepakrathore33',
+        repo: 'vscode-csharp',
     });
 
     if (listPullRequest.status !== 200) {
@@ -178,20 +177,22 @@ export async function createBranchAndPR(
 
     if (listPullRequest.data.some(pr => pr.title === title)) {
         console.log('Pull request with the same name already exists. Skip creation.');
-        return;
+        return null;
     }
 
-    if (!dryRun) {
+    if (dryRun !== true) {
         const pullRequest = await octokit.rest.pulls.create({
             body: body || title,
-            owner: 'dotnet',
-            repo: targetRemoteRepo,
+            owner: 'deepakrathore33',
+            repo: 'vscode-csharp',
             title: title,
             head: newBranchName,
             base: baseBranch,
         });
         console.log(`Created pull request: ${pullRequest.data.html_url}.`);
+        return pullRequest.data.number;
     } else {
         console.log(`[DRY RUN] Would have created PR with title: "${title}" and body: "${body || title}"`);
+        return null;
     }
 }
