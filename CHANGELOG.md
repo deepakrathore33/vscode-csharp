@@ -4,6 +4,10 @@
 - Debug from .csproj and .sln [#5876](https://github.com/dotnet/vscode-csharp/issues/5876)
 
 # 2.90.x
+
+
+* Bump Roslyn to 5.0.0-2.25430.3 (PR: [#5](https://github.com/dotnet/vscode-csharp/pull/5))
+
 * Bump Razor to 10.0.0-preview.25416.1 (PR: [#8557](https://github.com/dotnet/vscode-csharp/pull/8557))
   * Fix range formatting in the presence of K&R braces (PR: [#12121](https://github.com/dotnet/razor/pull/12121))
   * Add codelens endpoints and services for cohosting (PR: [#12078](https://github.com/dotnet/razor/pull/12078))
