@@ -4,6 +4,7 @@
 - Debug from .csproj and .sln [#5876](https://github.com/dotnet/vscode-csharp/issues/5876)
 
 # 2.91.x
+* Bump Roslyn to 5.0.0-2.25430.3 (PR: [#8](https://github.com/dotnet/vscode-csharp/pull/8))
 * Bump Roslyn to 5.0.0-2.25430.3 (PR: [#7](https://github.com/dotnet/vscode-csharp/pull/7))
   * Remove the 'force compute' entrypoint for diagnostics (PR: [#80060](https://github.com/dotnet/roslyn/pull/80060))
   * Update VSInternalContinueCharacter* serialization (PR: [#80085](https://github.com/dotnet/roslyn/pull/80085))
