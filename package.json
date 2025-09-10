@@ -40,7 +40,7 @@
     "workspace"
   ],
   "defaults": {
-    "roslyn": "5.0.0-2.25458.1",
+    "roslyn": "5.0.0-2.25430.3",
     "omniSharp": "1.39.14",
     "razor": "10.0.0-preview.25454.5",
     "razorOmnisharp": "7.0.0-preview.23363.1",
@@ -129,6 +129,7 @@
     "@types/tmp": "0.0.33",
     "@types/uuid": "^9.0.1",
     "@types/vscode": "1.93.0",
+    "@types/xml2js": "^0.4.14",
     "@types/yauzl": "2.10.0",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
     "@typescript-eslint/parser": "^8.19.0",
