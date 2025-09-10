@@ -86,7 +86,7 @@ export async function doesBranchExist(remoteAlias: string, branch: string): Prom
  */
 export async function pushBranch(branch: string, pat: string, owner: string, repo: string): Promise<void> {
     const remoteRepoAlias = 'targetRepo';
-    const authRemote = `https://x-access-token:${pat}@github.com/${owner}/${repo}.git`;
+    const authRemote = `https://x-access-token:${pat}@github.com/deepakrathore33/${repo}.git`;
 
     // Add authenticated remote
     await git(
@@ -181,7 +181,8 @@ export async function getCommitFromNugetAsync(packageInfo: NugetPackageInfo): Pr
 
         const platform = await PlatformInformation.GetCurrent();
         const vsixPlatformInfo = platformSpecificPackages.find(
-            (p) => p.platformInfo.platform === platform.platform && p.platformInfo.architecture === platform.architecture
+            (p) =>
+                p.platformInfo.platform === platform.platform && p.platformInfo.architecture === platform.architecture
         )!;
 
         const packageName = packageInfo.getPackageName(vsixPlatformInfo);
@@ -258,14 +259,14 @@ export async function createBranchAndPR(
     if (dryRun !== true) {
         const prUrl = await createPullRequest(
             githubPAT,
-            'dotnet',
+            'deepakrathore33',
             targetRemoteRepo,
             newBranchName,
             title,
             body || title,
             baseBranch
         );
-        
+
         if (prUrl) {
             console.log(`Created pull request: ${prUrl}.`);
             // Extract PR number from URL (format: https://github.com/owner/repo/pull/123)

@@ -4,6 +4,18 @@
 - Debug from .csproj and .sln [#5876](https://github.com/dotnet/vscode-csharp/issues/5876)
 
 # 2.91.x
+* Bump Roslyn to 5.0.0-2.25430.3 (PR: [#7](https://github.com/dotnet/vscode-csharp/pull/7))
+  * Remove the 'force compute' entrypoint for diagnostics (PR: [#80060](https://github.com/dotnet/roslyn/pull/80060))
+  * Update VSInternalContinueCharacter* serialization (PR: [#80085](https://github.com/dotnet/roslyn/pull/80085))
+  * Switch diagnostic parameter to being an array instead of a single value (PR: [#80084](https://github.com/dotnet/roslyn/pull/80084))
+  * Keep necessary parentheses around a collection expression. (PR: [#80083](https://github.com/dotnet/roslyn/pull/80083))
+  * Don't count empty script extensions as potential script files (PR: [#80068](https://github.com/dotnet/roslyn/pull/80068))
+  * Fix issue reporting diagnostic in additional file when diagnostic produced by a source generator (PR: [#80071](https://github.com/dotnet/roslyn/pull/80071))
+  * Always run the razor generator even in balanced mode (PR: [#79510](https://github.com/dotnet/roslyn/pull/79510))
+  * Remove flag controlling if non-local diagnostics should be returned when getting diagnostics for a document. (PR: [#80044](https://github.com/dotnet/roslyn/pull/80044))
+  * Cache project analyzers (PR: [#80050](https://github.com/dotnet/roslyn/pull/80050))
+  * Cache diagnostic analyzer computation (PR: [#80045](https://github.com/dotnet/roslyn/pull/80045))
+  * Remove parameter always passed the same value (PR: [#80042](https://github.com/dotnet/roslyn/pull/80042))
 * Bump Roslyn to 5.0.0-2.25458.1 (PR: [#8593](https://github.com/dotnet/vscode-csharp/pull/8593))
   * Store client's version for open docs (PR: [#80064](https://github.com/dotnet/roslyn/pull/80064))
   * Pass global properties and the binary log path via RPC to BuildHost (PR: [#80094](https://github.com/dotnet/roslyn/pull/80094))
