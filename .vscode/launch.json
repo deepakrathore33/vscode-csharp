@@ -265,6 +265,38 @@
             "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
             "args": ["test:integration:razor:cohost"],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Gulp Task",
+            "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+            "args": ["${input:gulpTask}"],
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug gulp insertion:roslyn",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+            "args": [
+                "insertion:roslyn",
+                "--assetManifestPath=./test-manifests",
+                "--roslynRepoPath=../roslyn",
+                "--roslynEndSHA=2eaa09890be9bdc5ea662d54129991355e5c60bb",
+                "--roslynBuildNumber=5.0.0-2.25430.3",
+                "--roslynBuildId=2783326",
+                "--targetBranch=main",
+                "--githubPAT=${input:githubPAT}",
+                "--dryrun=true"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
         }
     ],
     "inputs": [
@@ -275,9 +307,15 @@
             "options": ["singleCsproj", "RazorApp", "slnWithCsproj", "slnFilterWithCsproj", "slnWithGenerator"]
         },
         {
-            "id": "gulpTaskName",
-            "description": "The name of the gulp task to debug",
-            "type": "promptString"
+            "id": "gulpTask",
+            "type": "promptString",
+            "description": "Enter the gulp task name to debug"
+        },
+        {
+            "id": "githubPAT",
+            "type": "promptString",
+            "description": "Enter your GitHub Personal Access Token",
+            "password": true
         }
     ]
 }
