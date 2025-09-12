@@ -4,6 +4,7 @@
 - Debug from .csproj and .sln [#5876](https://github.com/dotnet/vscode-csharp/issues/5876)
 
 # 2.92.x
+* Bump Roslyn to 5.0.0-2.25430.3 (PR: [#9](https://github.com/dotnet/vscode-csharp/pull/9))
 
 # 2.91.x
 * Bump Roslyn to 5.0.0-2.25458.10 (PR: [#8588](https://github.com/dotnet/vscode-csharp/pull/8588))
